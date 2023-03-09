@@ -26,18 +26,20 @@ export default class IdentifierSet extends Model {
 
 	identifiers?: Identifier[];
 
-	static relationMappings: RelationMappings = {
-		identifiers: {
-			join: {
-				from: this.column('id'),
-				through: {
-					from: 'bookbrainz.identifier_set__identifier.set_id',
-					to: 'bookbrainz.identifier_set__identifier.identifier_id'
+	static get relationMappings(): RelationMappings {
+		return {
+			identifiers: {
+				join: {
+					from: this.column('id'),
+					through: {
+						from: 'bookbrainz.identifier_set__identifier.set_id',
+						to: 'bookbrainz.identifier_set__identifier.identifier_id'
+					},
+					to: Identifier.column('id')
 				},
-				to: Identifier.column('id')
-			},
-			modelClass: Identifier,
-			relation: this.ManyToManyRelation
-		}
-	};
+				modelClass: Identifier,
+				relation: this.ManyToManyRelation
+			}
+		};
+	}
 }
