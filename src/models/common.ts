@@ -16,11 +16,19 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import {Model} from './common';
+import {Model as ObjectionModel, snakeCaseMappers} from 'objection';
+import {snakeCase} from 'lodash';
 
+/**
+ * Base model that implements functionality which is common to all BookBrainz models.
+ */
+export class Model extends ObjectionModel {
+	static get columnNameMappers() {
+		return snakeCaseMappers();
+	}
 
-export default class EditorType extends Model {
-	id: number;
-
-	label: string;
+	/** Name of the database table equals the name of the model class in snake case by default. */
+	static get tableName() {
+		return ['bookbrainz', snakeCase(this.name)].join('.');
+	}
 }
