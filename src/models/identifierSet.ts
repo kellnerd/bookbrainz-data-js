@@ -29,12 +29,12 @@ export default class IdentifierSet extends Model {
 	static relationMappings: RelationMappings = {
 		identifiers: {
 			join: {
-				from: [this.tableName, 'id'].join('.'),
+				from: this.column('id'),
 				through: {
 					from: 'bookbrainz.identifier_set__identifier.set_id',
 					to: 'bookbrainz.identifier_set__identifier.identifier_id'
 				},
-				to: [Identifier.tableName, 'id'].join('.')
+				to: Identifier.column('id')
 			},
 			modelClass: Identifier,
 			relation: this.ManyToManyRelation

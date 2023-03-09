@@ -23,6 +23,14 @@ import {snakeCase} from 'lodash';
  * Base model that implements functionality which is common to all BookBrainz models.
  */
 export class Model extends ObjectionModel {
+	/**
+	 * @param {string} columnName - Short name of the column.
+	 * @returns {string} The full column specifier including the table's name.
+	 */
+	static column(columnName: string): string {
+		return [this.tableName, columnName].join('.');
+	}
+
 	static get columnNameMappers() {
 		return snakeCaseMappers();
 	}

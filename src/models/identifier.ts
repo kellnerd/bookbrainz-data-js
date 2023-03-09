@@ -36,20 +36,20 @@ export default class Identifier extends Model {
 	static relationMappings: RelationMappings = {
 		sets: {
 			join: {
-				from: [this.tableName, 'id'].join('.'),
+				from: this.column('id'),
 				through: {
 					from: 'bookbrainz.identifier_set__identifier.identifier_id',
 					to: 'bookbrainz.identifier_set__identifier.set_id'
 				},
-				to: [IdentifierSet.tableName, 'id'].join('.')
+				to: IdentifierSet.column('id')
 			},
 			modelClass: IdentifierSet,
 			relation: this.ManyToManyRelation
 		},
 		type: {
 			join: {
-				from: [this.tableName, 'type_id'].join('.'),
-				to: [IdentifierType.tableName, 'id'].join('.')
+				from: this.column('type_id'),
+				to: IdentifierType.column('id')
 			},
 			modelClass: IdentifierType,
 			relation: this.BelongsToOneRelation
