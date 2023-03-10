@@ -17,6 +17,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+import type {Model} from './models/common';
 import _ from 'lodash';
 import {diff} from 'deep-diff';
 
@@ -90,6 +91,13 @@ export function validateEntityType(model) {
 		throw new Error(
 			`Entity ${model.get('bbid')} is not a ${model.typeId}`
 		);
+	}
+}
+
+export async function truncateTablesOf(...models: Array<typeof Model>) {
+	for (const model of models) {
+		// eslint-disable-next-line no-await-in-loop
+		await model.knex().raw('TRUNCATE ?? CASCADE', model.tableName);
 	}
 }
 
