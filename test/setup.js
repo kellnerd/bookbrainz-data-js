@@ -26,8 +26,9 @@ export function mochaGlobalSetup() {
 		client: 'pg',
 		connection: {
 			database: 'bookbrainz_test',
-			host: '127.0.0.1',
-			user: 'bookbrainz'
+			host: process.env.POSTGRES_HOST ?? '127.0.0.1',
+			password: process.env.POSTGRES_PASSWORD ?? '',
+			user: process.env.POSTGRES_USER ?? 'bookbrainz'
 		}
 	});
 
