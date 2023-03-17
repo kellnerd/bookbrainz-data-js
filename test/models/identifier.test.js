@@ -19,27 +19,13 @@
 
 import Identifier from '../../lib/models/identifier';
 import IdentifierType from '../../lib/models/identifierType';
-import {Model} from '../../lib/models/common';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import knex from 'knex';
 import {truncateTablesOf} from '../../lib/util';
 
 
 chai.use(chaiAsPromised);
 const {expect} = chai;
-
-
-const db = knex({
-	client: 'pg',
-	connection: {
-		database: 'bookbrainz_test',
-		host: '127.0.0.1',
-		user: 'bookbrainz'
-	}
-});
-
-Model.knex(db);
 
 
 describe('Identifier model', () => {

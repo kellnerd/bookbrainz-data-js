@@ -1,4 +1,6 @@
 exit: true
 recursive: true
-require: '@babel/register'
+require:
+  - '@babel/register'
+  - 'test/setup.js'
 timeout: 20000
