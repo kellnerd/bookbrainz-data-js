@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2023  David Kellner
+ * Copyright (C) 2016  Ben Ockmore
+ *               2023  David Kellner
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
